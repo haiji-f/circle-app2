@@ -1,0 +1,425 @@
+/* === グローバル変数と基本設定 === */
+:root {
+  --font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --color-background: #f8fafc; /* slate-50 */
+  --color-surface: #ffffff;
+  --color-text-primary: #1e293b; /* slate-800 */
+  --color-text-secondary: #64748b; /* slate-500 */
+  --color-primary: #3b82f6; /* blue-500 */
+  --color-secondary: #8b5cf6; /* purple-500 */
+  --color-border: #e2e8f0; /* slate-200 */
+  --border-radius: 0.75rem; /* 12px */
+  --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: #e5e7eb; /* アプリ外の背景色 */
+  color: var(--color-text-primary);
+}
+
+/* === App.jsxのメインコンテナースタイル === */
+/* App.jsxの最上位divに 'app-shell' クラスを適用してください */
+.app-shell {
+  background-color: var(--color-background);
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+@media (min-width: 640px) {
+  body {
+    padding: 2rem;
+  }
+  .app-shell {
+    height: calc(100vh - 4rem);
+    border-radius: var(--border-radius);
+  }
+}
+
+/* === 共通のサブページスタイル === */
+.page-container {
+  padding: 1.5rem;
+}
+.page-header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+}
+.page-header .back-button {
+  margin-right: 1rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+.page-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* === MyPage.jsx 専用スタイル === */
+.mypage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.mypage-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.mypage-header .notification-bell {
+  position: relative;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.mypage-header .notification-badge {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #ef4444; /* red-500 */
+  border-radius: 9999px;
+  border: 2px solid var(--color-background);
+}
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+.card-title svg {
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+}
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.schedule-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #eff6ff; /* blue-50 */
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.schedule-item:hover {
+  background-color: #dbeafe; /* blue-200 */
+}
+.schedule-item .date {
+  font-weight: 500;
+  color: #1e40af; /* blue-800 */
+  width: 7rem;
+  flex-shrink: 0;
+}
+.schedule-item .event {
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+.schedule-item .arrow {
+  color: #94a3b8; /* slate-400 */
+}
+.circle-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.circle-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8fafc; /* slate-50 */
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.circle-item:hover {
+  background-color: #f1f5f9; /* slate-100 */
+}
+.circle-item .icon {
+  font-size: 1.875rem;
+  margin-right: 1rem;
+}
+.circle-item .info {
+  flex-grow: 1;
+}
+.circle-item .info h3 {
+  font-weight: 700;
+}
+.circle-item .info p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+.circle-item .arrow {
+  color: #94a3b8; /* slate-400 */
+}
+
+
+/* === SchedulePage.jsx 専用スタイル === */
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.calendar-nav h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.calendar-nav button {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.calendar-nav button:hover {
+  background-color: #f1f5f9;
+}
+.calendar-grid-header, .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  text-align: center;
+}
+.calendar-grid-header div {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding-bottom: 0.5rem;
+}
+.calendar-day {
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.calendar-day:hover {
+  background-color: #f1f5f9;
+}
+.calendar-day.is-selected {
+  background-color: #dbeafe; /* blue-200 */
+}
+.calendar-day.has-event {
+  background-color: #f5f3ff; /* purple-50 */
+}
+.calendar-day.is-selected.has-event {
+  background-color: #c7d2fe; /* indigo-200 */
+}
+.day-number {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.day-number.is-today {
+  background-color: var(--color-primary);
+  color: white;
+}
+.day-number.is-selected {
+  font-weight: 700;
+}
+.event-indicator {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+.event-indicator .event-text {
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-indicator .event-badge {
+  padding: 0 0.4rem;
+  font-size: 0.75rem;
+  background-color: var(--color-secondary);
+  color: white;
+  border-radius: 9999px;
+}
+.event-list-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.event-list-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-surface);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow-sm);
+}
+.event-list-item .date-icon {
+  width: 3rem;
+  text-align: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+.event-list-item .date-icon .day {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.event-list-item .date-icon .weekday {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* === ページ遷移アニメーション === */
+
+.page-transition-container {
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.page-transition-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 5rem;
+}
+
+.page-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+
+
+
+/* === CirclePageCalendar.jsx (react-calendar) 専用スタイル === */
+.react-calendar {
+  border-radius: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+}
+
+.react-calendar__navigation button {
+  font-weight: bold;
+  border-radius: 0.5rem;
+}
+.react-calendar__navigation button:hover {
+ background-color: #f3f4f6;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+  padding: 0.5em;
+  text-decoration: none;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr[title="土曜日"] {
+  color: #3b82f6;
+}
+.react-calendar__month-view__weekdays__weekday abbr[title="日曜日"] {
+  color: #ef4444;
+}
+
+.react-calendar__tile {
+  border-radius: 0.5rem;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 4px;
+}
+.react-calendar__tile:hover {
+  background-color: #f3f4f6;
+}
+
+.react-calendar__tile--now {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+.react-calendar__tile--now:hover {
+  background: #e9d5ff;
+}
+
+.react-calendar__tile--active {
+  background: #8b5cf6 !important;
+  color: white !important;
+}
+.react-calendar__tile--active:hover {
+  background: #7c3aed !important;
+}
+
+.event-dot {
+  height: 6px;
+  width: 6px;
+  background-color: #8b5cf6;
+  border-radius: 50%;
+  margin: 4px auto 0;
+}
+
+.react-calendar__tile--active .event-dot {
+  background-color: white;
+}

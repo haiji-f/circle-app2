@@ -1,0 +1,321 @@
+/* ============================================= */
+/* グローバル & 基本スタイル             */
+/* ============================================= */
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* スクロールバーのスタイル（任意） */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ============================================= */
+/* キーフレーム（アニメーション）        */
+/* ============================================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInFast {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.animate-fade-in-fast {
+    animation: fadeInFast 0.2s ease-in-out;
+}
+
+
+/* ============================================= */
+/* レイアウト & コンテナスタイル          */
+/* ============================================= */
+.app-container {
+    background-color: #f8fafc; /* bg-slate-50 */
+    width: 100%;
+    max-width: 28rem; /* max-w-md */
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    position: relative;
+}
+
+.page-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 5rem; /* pb-20 */
+}
+
+/* ============================================= */
+/* コンポーネントごとのスタイル       */
+/* ============================================= */
+
+/* --- ヘッダー & タイトル --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+.main-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+}
+.section-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    color: #374151; /* text-gray-700 */
+    margin-bottom: 1rem; /* mb-4 */
+    display: flex;
+    align-items: center;
+}
+
+/* --- カード & リストアイテム --- */
+.card {
+    background-color: #ffffff; /* bg-white */
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+    padding: 1.25rem; /* p-5 */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem; /* p-4 */
+    background-color: #f9fafb; /* bg-gray-50 */
+    border-radius: 0.5rem; /* rounded-lg */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.list-item:hover {
+    background-color: #f3f4f6; /* hover:bg-gray-100 */
+}
+.list-item-icon {
+    font-size: 1.875rem; /* text-3xl */
+    margin-right: 1rem; /* mr-4 */
+}
+.list-item-content {
+    flex-grow: 1;
+}
+.list-item-title {
+    font-weight: 700; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+}
+.list-item-description {
+    font-size: 0.875rem; /* text-sm */
+    color: #6b7280; /* text-gray-500 */
+}
+
+/* --- ボタン & インタラクティブ要素 --- */
+.icon-button {
+    position: relative;
+    padding: 0.5rem; /* p-2 */
+    border-radius: 9999px; /* rounded-full */
+}
+.icon-button:hover {
+    background-color: #f3f4f6; /* hover:bg-gray-100 */
+}
+.notification-badge {
+    position: absolute;
+    top: 0.25rem; /* top-1 */
+    right: 0.25rem; /* right-1 */
+    width: 1rem; /* w-4 */
+    height: 1rem; /* h-4 */
+    background-color: #ef4444; /* bg-red-500 */
+    color: #ffffff; /* text-white */
+    font-size: 0.75rem; /* text-xs */
+    border-radius: 9999px; /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #f8fafc; /* border-2 border-slate-50 */
+}
+.tag-button {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    background-color: #e0f2fe; /* bg-blue-100 */
+    color: #0369a1; /* text-blue-700 */
+    border-radius: 9999px; /* rounded-full */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    transition: background-color 0.2s;
+}
+.tag-button:hover {
+    background-color: #bae6fd; /* hover:bg-blue-200 */
+}
+.primary-button {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border-radius: 0.25rem; /* rounded */
+    background-color: #2563eb; /* bg-blue-600 */
+    color: #ffffff; /* text-white */
+}
+.primary-button:hover {
+    background-color: #1d4ed8; /* hover:bg-blue-700 */
+}
+.secondary-button {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border-radius: 0.25rem; /* rounded */
+    background-color: #e5e7eb; /* bg-gray-200 */
+}
+.secondary-button:hover {
+    background-color: #d1d5db; /* hover:bg-gray-300 */
+}
+.destructive-button {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border-radius: 0.25rem; /* rounded */
+    background-color: #ef4444; /* bg-red-500 */
+    color: #ffffff; /* text-white */
+}
+.destructive-button:hover {
+    background-color: #dc2626; /* hover:bg-red-600 */
+}
+
+/* --- 検索バー --- */
+.search-input-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem; /* pl-12 pr-4 py-3 */
+    background-color: #ffffff; /* bg-white */
+    border-radius: 9999px; /* rounded-full */
+    border: 1px solid #d1d5db; /* border border-gray-300 */
+    transition: all 0.2s;
+}
+.search-input:focus {
+    border-color: #3b82f6; /* focus:border-blue-500 */
+    outline: none;
+}
+.search-input-icon {
+    position: absolute;
+    left: 1rem; /* left-4 */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af; /* text-gray-400 */
+}
+
+
+/* --- モーダル & パネル --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; /* p-4 */
+}
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* bg-black bg-opacity-50 */
+}
+.modal-content {
+    position: relative;
+    background-color: #ffffff; /* bg-white */
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    width: 100%;
+    max-width: 24rem; /* max-w-sm */
+    padding: 1.5rem; /* p-6 */
+}
+
+/* --- CirclePage 専用 --- */
+.circle-page-header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10rem; /* h-40 */
+    background-color: #3b82f6; /* bg-blue-500 */
+    z-index: -10;
+}
+.circle-icon-wrapper {
+    background-color: #ffffff; /* bg-white */
+    padding: 0.5rem; /* p-2 */
+    border-radius: 9999px; /* rounded-full */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    border: 4px solid #f8fafc; /* border-4 border-slate-50 */
+}
+.circle-icon {
+    font-size: 4.5rem; /* text-7xl */
+}
+.info-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e5e7eb; /* bg-gray-200 */
+    padding: 0.25rem 0.75rem; /* px-3 py-1 */
+    border-radius: 9999px; /* rounded-full */
+}
+
+/* --- ナビゲーションバー --- */
+.bottom-nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 28rem; /* max-w-md */
+    margin: 0 auto;
+    background-color: #ffffff; /* bg-white */
+    border-top: 1px solid #e5e7eb; /* border-t border-gray-200 */
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.05);
+}
+.bottom-nav-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4rem; /* h-16 */
+}
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: color 0.2s;
+    color: #6b7280; /* text-gray-500 */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.bottom-nav-item:hover {
+    color: #3b82f6; /* hover:text-blue-500 */
+}
+.bottom-nav-item.active {
+    color: #2563eb; /* text-blue-600 */
+}
+.bottom-nav-label {
+    font-size: 0.75rem; /* text-xs */
+    margin-top: 0.25rem; /* mt-1 */
+}
+.bottom-nav-item.active .bottom-nav-label {
+    font-weight: 700; /* font-bold */
+}

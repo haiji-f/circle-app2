@@ -1,0 +1,154 @@
+/* === CSS 변수 정의: 모바일 앱용 컬러 팔레트 및 스타일 === */
+:root {
+  /* 폰트 설정 */
+  --font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* 라이트 테마 컬러 팔레트 */
+  --color-primary: #3b82f6; /* blue-500 */
+  --color-primary-dark: #2563eb; /* blue-600 */
+  
+  --color-background: #f8fafc; /* slate-50 */
+  --color-surface: #ffffff;
+  --color-text-primary: #1e293b; /* slate-800 */
+  --color-text-secondary: #64748b; /* slate-500 */
+  --color-border: #e2e8f0; /* slate-200 */
+  
+  /* 기타 */
+  --border-radius-sm: 0.5rem; /* 8px */
+  --border-radius-md: 0.75rem; /* 12px */
+  --transition-smooth: all 0.2s ease-in-out;
+  --box-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --box-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* === 글로벌 스타일 리셋과 기본 설정 === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent; /* 모바일 터치 시 하이라이트 제거 */
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  /* 데스크톱용 배경색을 기본으로 설정 */
+  background-color: #e5e7eb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* === 메인 앱 컨테이너 === */
+#root {
+  /* 데스크톱 표시를 위해 높이를 자동으로 설정 */
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 앱의 모양을 제어하는 셸 */
+.app-shell {
+  background-color: var(--color-background);
+  width: 100%;
+  max-width: 100%; /* 모바일에서는 전체 너비 */
+  height: 100vh;   /* 모바일에서는 전체 높이 */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 컨테이너 내 스크롤 제어 */
+}
+
+/* === 데스크톱 및 태블릿용 반응형 디자인 === */
+@media (min-width: 640px) {
+  body {
+    padding: 2rem;
+  }
+
+  .app-shell {
+    max-width: 440px; /* 데스크톱에서는 모바일과 같은 너비로 */
+    height: calc(100vh - 4rem); /* 상하 패딩 고려 */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-md);
+  }
+}
+
+/* === 부드러운 페이지 전환 애니메이션 === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* === 커스텀 스크롤바 (모바일처럼 보이게) === */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* === 기본 버튼 및 입력 필드 스타일 (Tailwind와 조화) === */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  border: 1px solid var(--color-border);
+  transition: var(--transition-smooth);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.visibility-toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280; /* アイコンの色 */
+  padding: 4px;
+}
+
+.visibility-toggle-btn:hover {
+  color: #111827;
+}
